@@ -2,8 +2,8 @@
     "name": "jongates/wechat_publicer",
     "description": "wechat_publicer",
     "type": "library",
-    "version": "1.0.0",
     "license": "MIT",
+    "minimum-stability": "dev",
     "require": {
         "php": ">=8.0"
     },
