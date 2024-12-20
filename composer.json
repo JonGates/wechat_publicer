@@ -1,6 +1,12 @@
 {
     "name": "jongates/wechat_publicer",
     "description": "wechat_publicer",
+    "type": "library",
+    "version": "1.0.0",
+    "license": "MIT",
+    "require": {
+        "php": ">=8.0"
+    },
     "autoload": {
         "psr-4": {
             "Jongates\\WechatPublicer\\": "src/"
@@ -10,6 +16,5 @@
         {
             "name": "Jon Gates"
         }
-    ],
-    "require": {}
+    ]
 }
