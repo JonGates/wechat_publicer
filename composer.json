@@ -1,7 +1,7 @@
 {
     "name": "jongates/wechat_publicer",
     "description": "wechat_publicer",
-    "type": "library",
+    "type": "package",
     "license": "MIT",
     "minimum-stability": "dev",
     "prefer-stable": true,
