@@ -1,0 +1,15 @@
+{
+    "name": "jongates/wechat_publicer",
+    "description": "wechat_publicer",
+    "autoload": {
+        "psr-4": {
+            "Jongates\\WechatPublicer\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jon Gates"
+        }
+    ],
+    "require": {}
+}
