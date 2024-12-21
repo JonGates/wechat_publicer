@@ -4,6 +4,7 @@
     "type": "library",
     "minimum-stability": "dev",
     "prefer-stable": true,
+    "license": "MIT",
     "require": {
         "php": ">=8.0"
     },
