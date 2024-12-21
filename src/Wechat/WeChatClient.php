@@ -1,12 +1,12 @@
 <?php
 namespace WechatPublicer\WeChat;
 
-use WechatPublicer\Publisher\Common\HttpClient;
+use WechatPublicer\Common\HttpClient;
 
 class WeChatClient {
     private $tokenManager;
     private $baseUrl = 'https://api.weixin.qq.com/cgi-bin';
-    
+
     public function __construct($config) {
         $this->tokenManager = new TokenManager($config);
     }
@@ -24,11 +24,11 @@ class WeChatClient {
             'access_token' => $this->tokenManager->getAccessToken(),
             'type' => 'image'
         ];
-        
+
         $data = [
             'media' => new \CURLFile($imagePath)
         ];
-        
+
         $result = HttpClient::post($url . '?' . http_build_query($params), $data);
         return $result['media_id'] ?? null;
     }
@@ -41,12 +41,15 @@ class WeChatClient {
         $params = [
             'access_token' => $this->tokenManager->getAccessToken()
         ];
-        
+
         $data = [
-            'articles' => [$article]
+            'articles' => $article
         ];
-        
+
+		$data = json_encode($data, JSON_UNESCAPED_UNICODE);
+		//var_dump($data);
         $result = HttpClient::post($url . '?' . http_build_query($params), $data);
+		//var_dump($result);
         return $result['media_id'] ?? null;
     }
 
@@ -58,14 +61,14 @@ class WeChatClient {
         $params = [
             'access_token' => $this->tokenManager->getAccessToken()
         ];
-        
+
         $data = [
             'media_id' => $mediaId
         ];
-        
+
         $result = HttpClient::post($url . '?' . http_build_query($params), $data);
         return $result['publish_id'] ?? null;
     }
-    
 
-} 
+
+}
