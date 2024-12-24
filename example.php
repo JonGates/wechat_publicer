@@ -2,7 +2,7 @@
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-use WechatPublicer\Publisher\Publisher;
+use Jongates\WechatPublicer\Publisher\Publisher;
 
 // 配置信息
 function cs_cs(): void
@@ -48,7 +48,12 @@ function cs_cs(): void
 	];
 
 	try {
-		$wechatPublicer->publishArticleWithImage($templates);
+		// 生成草稿
+		$wechatPublicer->generateDraft($templates);
+		// 保存草稿
+		$wechatPublicer->saveDraft();
+		// 发布草稿
+		$wechatPublicer->publishDraft();
 	} catch (\Exception $e) {
 		echo $e->getMessage();
 	}

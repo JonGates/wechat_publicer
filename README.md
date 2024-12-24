@@ -13,14 +13,18 @@ composer require jongates/wechat_publicer
 模板文件示例，miniprogram.html
 
 3. 引入
-use WechatPublicer\Publisher;
+use Jongates\WechatPublicer\Publisher;
 
 4. 初始化
 $publisher = new Publisher($config);
 
 5. 发布
-$publisher->publishArticleWithImage($data);
+$publisher->publishArticle($data);
 
+6. 分开发布
+$publisher->generateDraft($data);
+$publisher->saveDraft();
+$publisher->publishDraft();
 
 
 

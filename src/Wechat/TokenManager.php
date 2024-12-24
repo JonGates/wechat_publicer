@@ -1,7 +1,7 @@
 <?php
-namespace WechatPublicer\WeChat;
+namespace Jongates\WechatPublicer\WeChat;
 
-use WechatPublicer\Common\HttpClient;
+use Jongates\WechatPublicer\Common\HttpClient;
 
 class TokenManager {
     private $appId;

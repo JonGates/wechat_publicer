@@ -1,7 +1,7 @@
 <?php
-namespace WechatPublicer\WeChat;
+namespace Jongates\WechatPublicer\WeChat;
 
-use WechatPublicer\Common\HttpClient;
+use Jongates\WechatPublicer\Common\HttpClient;
 
 class WeChatClient {
     private $tokenManager;
@@ -67,7 +67,7 @@ class WeChatClient {
         ];
 
         $result = HttpClient::post($url . '?' . http_build_query($params), $data);
-        return $result['publish_id'] ?? null;
+        return $result;
     }
 
 

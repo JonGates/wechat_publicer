@@ -1,14 +1,16 @@
 <?php
 
-namespace WechatPublicer\Publisher;
+namespace Jongates\WechatPublicer\Publisher;
 
-use WechatPublicer\WeChat\WeChatClient;
-use WechatPublicer\Article\ArticleGenerator;
+use Jongates\WechatPublicer\WeChat\WeChatClient;
+use Jongates\WechatPublicer\Article\ArticleGenerator;
 
 class Publisher {
     private $wechat;
     private $article_generator;
 	private $config;
+	private $articles = [];
+	private $draft_media_id = '';
 
     public function __construct(array $config) {
 		$this->config = $config;
@@ -33,19 +35,22 @@ class Publisher {
         $this->article_generator = new ArticleGenerator($this->config);
     }
 
-    /**
-     * 发布文章到公众号
-     */
-    public function publishArticle($data) {
-        $article = $this->article_generator->generateArticle($data);
-        $mediaId = $this->wechat->addDraft($article);
-        return $this->wechat->publishDraft($mediaId);
-    }
 
     /**
      * 发布图文
      */
-    public function publishArticleWithImage($data) {
+    public function publishArticle($data) {
+		// 生成草稿
+		$this->generateDraft($data);
+		// 保存草稿
+		$this->saveDraft();
+		// 发布草稿
+		return $this->publishDraft();
+    }
+
+
+	// 生成草稿
+	public function generateDraft($data) {
 		$articles = [];
 		foreach ($data as $item) {
 			// 优先使用thumb_media_id
@@ -65,8 +70,19 @@ class Publisher {
 			$_article['thumb_media_id'] = $thumbMediaId;
 			$articles[] = $_article;
 		}
+		$this->articles = $articles;
+		return $articles;
+	}
 
-		$mediaId = $this->wechat->addDraft($articles);
-        return $this->wechat->publishDraft($mediaId);
-    }
+
+	// 保存草稿
+	public function saveDraft() {
+		$this->draft_media_id = $this->wechat->addDraft($this->articles);
+	}
+
+
+	// 发布草稿
+	public function publishDraft() {
+		return $this->wechat->publishDraft($this->draft_media_id);
+	}
 }

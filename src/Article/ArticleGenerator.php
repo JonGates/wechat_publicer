@@ -1,6 +1,6 @@
 <?php
 
-namespace WechatPublicer\Article;
+namespace Jongates\WechatPublicer\Article;
 
 class ArticleGenerator {
 	private $config;

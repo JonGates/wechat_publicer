@@ -1,6 +1,6 @@
 <?php
 
-namespace WechatPublicer\Common;
+namespace Jongates\WechatPublicer\Common;
 
 
 class HttpClient
