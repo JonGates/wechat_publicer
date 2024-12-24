@@ -18,6 +18,7 @@ function cs_cs(): void
 	];
 	$wechatPublicer = new Publisher($config);
 
+	// 多组数据
 	$templates = [
 		[
 			'type' => 'miniprogram',
