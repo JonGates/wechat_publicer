@@ -2,7 +2,7 @@
 
 namespace Jongates\WechatPublicer\Publisher;
 
-use Jongates\WechatPublicer\WeChat\WeChatClient;
+use Jongates\WechatPublicer\Wechat\WeChatClient;
 use Jongates\WechatPublicer\Article\ArticleGenerator;
 
 class Publisher {

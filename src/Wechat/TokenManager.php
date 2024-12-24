@@ -1,5 +1,5 @@
 <?php
-namespace Jongates\WechatPublicer\WeChat;
+namespace Jongates\WechatPublicer\Wechat;
 
 use Jongates\WechatPublicer\Common\HttpClient;
 
