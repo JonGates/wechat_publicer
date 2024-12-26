@@ -49,7 +49,25 @@ class Publisher {
     }
 
 
-	// 生成草稿
+	/**
+	 * 上传图片
+	 */
+	public function upload_image($imagePath) {
+		return $this->wechat->upload_image($imagePath);
+	}
+
+	/**
+	 * 上传永久素材
+	 */
+	public function upload_material($imagePath) {
+		return $this->wechat->upload_material($imagePath);
+	}
+
+
+	/**
+	 * 生成草稿
+	 *
+	 */
 	public function generateDraft($data) {
 		$articles = [];
 		foreach ($data as $item) {
@@ -59,10 +77,14 @@ class Publisher {
 			} else {
 				if (isset($item['thumb_media_path'])) {
 					// 如果thumb_media_id为空，则上传封面图片
-					$thumbMediaId = $this->wechat->uploadImage($item['thumb_media_path']);
+					$thumbMediaId = $this->wechat->upload_material($item['thumb_media_path']);
 				} else {
 					// 如果thumb_media_path为空，则使用默认封面图片
-					$thumbMediaId = '4uyfP5XSWLkLfwA93nlMsfAWFXcuixT1bnLry3da6kyMSPL9S4C-m9i4sekp1zcb';
+					if (isset($this->config['default_thumb_media_id'])) {
+						$thumbMediaId = $this->config['default_thumb_media_id'];
+					} else {
+						$thumbMediaId = '';
+					}
 				}
 			}
 

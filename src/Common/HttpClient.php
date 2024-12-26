@@ -49,15 +49,24 @@ class HttpClient
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
         curl_setopt($ch, CURLOPT_POST, true);
 
-        curl_setopt($ch, CURLOPT_POSTFIELDS, is_array($data) ?
-            json_encode($data, JSON_UNESCAPED_UNICODE) : $data);
+        // 检查是否包含文件上传
+        if (isset($data['media']) && $data['media'] instanceof \CURLFile) {
+            // 文件上传不需要 json_encode
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+            // 文件上传需要设置正确的 Content-Type
+            curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: multipart/form-data']);
+        } else {
+            // 普通数据使用 JSON 格式
+            curl_setopt($ch, CURLOPT_POSTFIELDS, is_array($data) ?
+                json_encode($data, JSON_UNESCAPED_UNICODE) : $data);
+
+            if (is_array($data)) {
+                curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json; charset=UTF-8']);
+            }
+        }
 
         if ($headers) {
             curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-        }
-
-        if (is_array($data)) {
-            curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json; charset=UTF-8']);
         }
 
         $response = curl_exec($ch);
@@ -73,6 +82,6 @@ class HttpClient
             return $decoded;
         }
 
-        return $response;
+        return ['response' => $response];
     }
 }
