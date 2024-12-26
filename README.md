@@ -30,5 +30,15 @@ $publisher->publishDraft();
 引用参考：example.php
 模板参考：templates_gzh/miniprogram.html
 
+$config = [
+	'app_id' => 'xxxxxxxxxxxxxxxx', // 公众号appid
+	'app_secret' => 'xxxxxxxxxxxxxxxxxxxxxxx', // 公众号appsecret
+	'nickname' => 'app名称', // 公众号名称
+	'cache_path' => '../../temp/gzh', // 缓存路径
+	'templates_path' => '../../templates_gzh', // 模板路径
+	'default_thumb_media_id' => '4uyfP5XSWLkLfwA93nlMsfAWFXcuixT1bnLry3da6kyMSPL9S4C-m9i4sekp1zcb', // 全局默认封面图片，最后使用
+];
+
+
 
 

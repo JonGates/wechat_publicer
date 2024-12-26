@@ -21,10 +21,19 @@ class WeChatClient {
 			// 判断是否是远程图片
 			if (filter_var($imagePath, FILTER_VALIDATE_URL)) {
 				// 是远程图片,下载到缓存目录
-				$imageContent = file_get_contents($imagePath);
-				if ($imageContent === false) {
+				$ch = curl_init();
+				curl_setopt($ch, CURLOPT_URL, $imagePath);
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+				curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+				curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+				$imageContent = curl_exec($ch);
+				$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+				curl_close($ch);
+
+				if ($imageContent === false || $httpCode !== 200) {
 					throw new \Exception('远程图片下载失败');
 				}
+
 				$ext = pathinfo(parse_url($imagePath, PHP_URL_PATH), PATHINFO_EXTENSION);
 				$ext = $ext ?: 'jpg';
 				$localPath = $this->config['cache_path'] . '/upload/image/' . md5($imagePath) . '.' . $ext;
