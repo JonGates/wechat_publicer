@@ -1,61 +1,28 @@
-<section style="text-align: center">
-	<p style="outline: 0px; text-align: center">
-		<a class="weapp_image_link js_weapp_entry" data-miniprogram-type="image" style=""
-			data-miniprogram-appid="{app_id}" data-miniprogram-path="{url}"
-			data-miniprogram-nickname="{nickname}" data-miniprogram-servicetype="0" data-miniprogram-applink=""
-			data-miniprogram-imageurl="{pic_1}"><img
-				src="{pic_1}"
-				data-src="{pic_1}"
-				class="rich_pages wxw-img" data-ratio="0.565" data-w="1000" contenteditable="false"
-				data-extentions-extra-ocr-id="bc9cb5c3edd01ed2afce827161654abe" data-imgqrcoded="1" /><img
-				class="ProseMirror-separator" alt=""
-				data-extentions-extra-ocr-id="e3b0c44298fc1c149afbf4c8996fb924" /><br
-				class="ProseMirror-trailingBreak" /></a>
-	</p>
-</section>
-<h2 style="
-		margin-top: var(--cos-space-3xs);
-		margin-bottom: var(--cos-space-3xs);
-		font-weight: var(--cos-font-medium);
-		font-size: var(--cos-text-headline);
-		text-wrap: wrap;
-		line-height: 32px;
-		font-family: -apple-system, Arial, Helvetica, sans-serif;
-		color: rgb(51, 51, 51);
-		letter-spacing: normal;
-		text-align: center;
-		background-color: rgb(255, 255, 255);
-	">
-	<span style="color: rgb(0, 128, 255)"><span style="
-				color: rgb(0, 128, 255);
-				text-align: center;
-				font-family: mp-quote, -apple-system-font, BlinkMacSystemFont,
-					'Helvetica Neue', 'PingFang SC', 'Hiragino Sans GB',
-					'Microsoft YaHei UI', 'Microsoft YaHei', Arial, sans-serif;
-				font-size: var(--articleFontsize);
-				letter-spacing: 0.034em;
-			">↑↑↑&nbsp;</span><strong><span style="
-					color: rgb(0, 128, 255);
-					font-family: mp-quote, -apple-system-font,
-						BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC',
-						'Hiragino Sans GB', 'Microsoft YaHei UI',
-						'Microsoft YaHei', Arial, sans-serif;
-					font-size: var(--articleFontsize);
-					letter-spacing: 0.034em;
-					text-align: center;
-					font-weight: var(--cos-font-medium);
-				">
-				<a data-miniprogram-appid="{app_id}" data-miniprogram-path="{url}">{click_str}</a>
-			</span></strong><span style="
-				color: rgb(0, 128, 255);
-				font-family: mp-quote, -apple-system-font, BlinkMacSystemFont,
-					'Helvetica Neue', 'PingFang SC', 'Hiragino Sans GB',
-					'Microsoft YaHei UI', 'Microsoft YaHei', Arial, sans-serif;
-				font-size: var(--articleFontsize);
-				letter-spacing: 0.034em;
-				text-align: center;
-				font-weight: var(--cos-font-medium);
-			">&nbsp;↑↑↑</span></span>
-</h2>
+<div class="article">
+	<h1>{{ title }}</h1>
 
-<section><span leaf=""><span textstyle="" style="font-size: 10px">{description}</span></span></section>
+	<div class="author" title="条件判断">
+		{% if show_author %}
+			<p>作者：{{ author }}</p>
+		{% else %}
+			<p>匿名发布</p>
+		{% endif %}
+	</div>
+
+
+	<div class="content">
+		{{ content }}
+	</div>
+
+
+	<div class="items" title="循环"></div>
+		{% if items %}
+			<ul>
+			{% for item in items %}
+				<li>{{ item.name }} - {{ item.price }}</li>
+			{% endfor %}
+			</ul>
+		{% endif %}
+	</div>
+
+</div>

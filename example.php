@@ -24,27 +24,41 @@ function cs_cs(): void
 			'type' => 'miniprogram',
 			'thumb_media_id' => '4uyfP5XSWLkLfwA93nlMsfAWFXcuixT1bnLry3da6kyMSPL9S4C-m9i4sekp1zcb',
 			'title' => '测试1',
-			'nickname' => 'app1名称',
-			'author' => 'app1名称',
-			'description' => '描述1',
-			'digest' => '简介1',
-			'app_id' => 'wxxxxxxxxxxxxxxxx',
-			'url' => 'pages/Book/index?book_id=1',
-			'click_str' => '点击免费阅读',
-			'pic_1' => 'http://mmbiz.qpic.cn/mmbiz_jpg/pYlKxHMxWnQC8WhibshcibvgUMG7xic2WDnlTybQSApEVFAON3UTwt8Bribnp7mBpebxeTvIEadyibavhUzKToy6LpA/0?from=appmsg',
+			'content' => '测试1内容',
+			'items' => array(
+				1 => array(
+					'name' => '《1》',
+					'price' => '免费',
+				),
+				2 => array(
+					'name' => '《2》',
+					'price' => '免费',
+				),
+				3 => array(
+					'name' => '《3》',
+					'price' => '免费',
+				),
+			),
 		],
 		[
 			'type' => 'miniprogram',
 			'thumb_media_id' => '4uyfP5XSWLkLfwA93nlMsfAWFXcuixT1bnLry3da6kyMSPL9S4C-m9i4sekp1zcb',
 			'title' => '测试2',
-			'nickname' => 'app2名称',
-			'author' => 'app2名称',
-			'description' => '描述2',
-			'digest' => '简介2',
-			'app_id' => 'wxxxxxxxxxxxxxxxx',
-			'url' => 'pages/Book/index?book_id=2',
-			'click_str' => '点击免费阅读',
-			'pic_1' => 'http://mmbiz.qpic.cn/mmbiz_jpg/pYlKxHMxWnQC8WhibshcibvgUMG7xic2WDnlTybQSApEVFAON3UTwt8Bribnp7mBpebxeTvIEadyibavhUzKToy6LpA/0?from=appmsg',
+			'content' => '测试2内容',
+			'items' => array(
+				1 => array(
+					'name' => '《1》',
+					'price' => '免费',
+				),
+				2 => array(
+					'name' => '《2》',
+					'price' => '免费',
+				),
+				3 => array(
+					'name' => '《3》',
+					'price' => '免费',
+				),
+			),
 		]
 	];
 
